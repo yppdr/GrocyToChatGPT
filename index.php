@@ -1,4 +1,4 @@
-<pre>
+
 <?php
 require __DIR__ . '/vendor/autoload.php';
 
@@ -12,9 +12,8 @@ require_once 'utils/openia.php';
 
 $stock = json_decode(getGrocyStock());
 
-//echo generatePrompt($stock);
+echo generatePrompt($stock);
 
 
-echo getGrocyStock();
+//echo getGrocyStock();
 ?>
-</pre>

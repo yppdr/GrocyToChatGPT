@@ -1,6 +1,5 @@
 <?php 
 
-
 function generatePrompt($stock_list)
 {
 
@@ -10,7 +9,7 @@ $list = "";
 
     foreach ($stock_list as $value) {
         
-        $list .= $value->amount . " unités de " . $value->product->name. ", ";
+        $list .= $value->amount . " " . $value->product->product_group_id . " " . $value->product->name. ", ";
         //var_dump($value->product->name);
         //var_dump($value->amount);
         
