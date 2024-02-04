@@ -2,19 +2,13 @@
 
 function generatePrompt($stock_list)
 {
-
-$start = "Salut, j'aimerais faire plusieur recettes pour ma semaine et j'ai actuellement : ";
-$end = "que me conseil tu comme recette ?";
-$list = "";
-
-    foreach ($stock_list as $value) {
-        
-        $list .= $value->amount . " " . $value->product->product_group_id . " " . $value->product->name. ", ";
-        //var_dump($value->product->name);
-        //var_dump($value->amount);
-        
-    }
-
-return $start . $list . $end;
-
+    $start = "Salut, j'aimerais faire plusieurs recettes pour ma semaine et j'ai actuellement : ";
+    $end = "que me conseilles-tu comme recette ?";
+    $list = array_map(function($value) {
+        $product_unit_id = $value->product->product_group_id;
+        $product_details = getProductDetails($product_unit_id)->quantity_unit_stock->name;
+        return $value->amount . " " . $product_details . " de " . $value->product->name;
+    }, $stock_list);
+    
+    return $start . implode(", ", $list) . $end;
 }
